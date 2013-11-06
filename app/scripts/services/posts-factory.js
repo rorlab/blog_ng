@@ -2,9 +2,7 @@
 
 angular.module('blogNgApp')
   .factory('postsFactory', ['$resource', function ($resource) {
-    return $resource('http://' + 'localhost\\:3000' + '/posts/:id', {
-      id: '@id'
-    }, {
+    return $resource('http://' + 'localhost\\:3000' + '/posts', {}, {
 
     });
   }]);

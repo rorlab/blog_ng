@@ -1,7 +1,28 @@
 <p>This is the posts view.</p>
 
-<ul ng-controller="PostsCtrl">
-  <li ng-repeat="post in posts">
-    {{ post.title }}
-  </li>
-</ul>
+<div ng-controller="PostsCtrl">
+
+
+  <!--TODO: post 데이터 추가하기-->
+  <div class="row-fluid" style="margin-bottom:1em;">
+    <fieldset class="span12">
+      <legend>Post 추가</legend>
+      <label>제목</label>
+      <input type="text" ng-model="addPostData.title"><br/>
+      <label>내용 </label>
+      <textarea ng-model="addPostData.text"></textarea><br/>
+      <a ng-click="addPost()" class="btn btn-primary">Create</a>
+    </fieldset>
+  </div>
+
+  <div class="row-fluid">
+  <h3>Post 데이터 목록</h3>
+    <ul>
+      <li ng-show="addPostData.title">{{ addPostData.title }}</li>
+      <li ng-repeat="post in posts">
+        {{ post.title }}
+      </li>
+    </ul>
+  </div>
+
+</div>

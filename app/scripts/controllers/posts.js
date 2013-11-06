@@ -10,4 +10,10 @@ angular.module('blogNgApp')
 //      {title:'Title5'}
 //    ];
     $scope.posts = postsFactory.query();
+    $scope.addPostData = {};
+    $scope.addPost = function () {
+      postsFactory.save({ post: $scope.addPostData });
+      $scope.posts.push($scope.addPostData);
+      $scope.addPostData = {};
+    };
   }]);
