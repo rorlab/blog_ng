@@ -4,14 +4,12 @@ angular.module('blogNgApp')
   .controller('PostsCtrl', [ '$scope', 'postsFactory', '$modal', '$log', function ($scope, postsFactory, $modal, $log) {
     $scope.posts = postsFactory.query();
     $scope.addPostData = {};
-    $scope.editPostData = {};
     $scope.addPost = function () {
       postsFactory.save({ post: $scope.addPostData });
       $scope.posts.push($scope.addPostData);
       $scope.addPostData = {};
     };
     $scope.editPost = function (idx) {
-
       var modalInstance = $modal.open({
         templateUrl: 'views/editPostModalContent.html',
         controller: 'editPostModalInstanceCtrl',
