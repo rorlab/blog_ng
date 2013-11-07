@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('blogNgApp', ['ngResource'])
+angular.module('blogNgApp', ['ngResource', 'ui.bootstrap'])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

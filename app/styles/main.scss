@@ -1,7 +1,7 @@
 $iconSpritePath: "../images/glyphicons-halflings.png";
 $iconWhiteSpritePath: "../images/glyphicons-halflings-white.png";
 
-@import "bootstrap-sass/lib/bootstrap";
+@import "../bower_components/bootstrap-sass/lib/bootstrap";
 
 /* Put your CSS here */
 html, body {
@@ -30,3 +30,5 @@ body {
     line-height: 1;
     letter-spacing: -1px;
 }
+
+a, .nav, .pagination, .carousel a { cursor: pointer; }

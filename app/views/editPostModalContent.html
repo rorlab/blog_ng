@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h3>Post 수정</h3>
+</div>
+<div class="modal-body">
+  <div class="row-fluid" style="margin-bottom:1em;">
+    <label>제목</label>
+    <input type="text" ng-model="editPostData.title"><br/>
+    <label>내용 </label>
+    <textarea ng-model="editPostData.text"></textarea><br/>
+  </div>
+</div>
+<div class="modal-footer">
+  <a ng-click="savePost()" class="btn btn-primary">Create</a>
+  <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
