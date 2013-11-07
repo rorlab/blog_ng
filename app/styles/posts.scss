@@ -1,0 +1,38 @@
+#title {
+  text-align: right;
+}
+
+ul#posts {
+  margin-left:0;
+  list-style-type: none;
+  li.post {
+    border:1px dotted gray;
+    padding:1em;
+    margin-bottom:.5em;
+    .title {
+      font-weight: bold;
+      border-bottom: 1px solid #d0d0d0;
+      padding-bottom: .5em;
+      margin-bottom:.5em;
+    }
+    .text {
+
+    }
+    .created_at {
+      font-size:small;
+      font-style: italic;
+      color: #a8a8a8;
+    }
+    .actions {
+      text-align: right;
+    }
+  }
+}
+
+.comments {
+  .comment {
+    .body {
+
+    }
+  }
+}

@@ -4,6 +4,7 @@ angular.module('blogNgApp')
   .controller('PostsCtrl', [ '$scope', 'postsFactory', '$modal', '$log', function ($scope, postsFactory, $modal, $log) {
     $scope.posts = postsFactory.query();
     $scope.addPostData = {};
+    $scope.predicate = '-created_at';
     $scope.addPost = function () {
       postsFactory.save({ post: $scope.addPostData });
       $scope.posts.push($scope.addPostData);
