@@ -28,8 +28,12 @@ angular.module('blogNgApp')
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-    $scope.deletePost = function(){
-      alert("Post 삭제하기 ");
+    $scope.deletePost = function(idx){
+      if (confirm("정말 삭제 하시겠습니까?")){
+        var post = $scope.posts[idx];
+        postsFactory.delete({ id: post.id });
+        $scope.posts.splice(idx, 1);
+      }
     };
   }]);
 
