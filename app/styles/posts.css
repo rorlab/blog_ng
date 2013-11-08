@@ -10,12 +10,21 @@ ul#posts {
     margin-bottom: .5em; }
     ul#posts li.post .title {
       font-weight: bold;
-      border-bottom: 1px solid #d0d0d0;
       padding-bottom: .5em;
       margin-bottom: .5em; }
+    ul#posts li.post .text {
+      border-top: 1px solid #d0d0d0;
+      padding-top: .5em; }
     ul#posts li.post .created_at {
       font-size: small;
       font-style: italic;
       color: #a8a8a8; }
     ul#posts li.post .actions {
       text-align: right; }
+
+.comments {
+  margin-bottom: 1em; }
+  .comments .comment_label {
+    border-bottom: 1px solid #eaeaea;
+    margin-top: .5em;
+    margin-bottom: .5em; }

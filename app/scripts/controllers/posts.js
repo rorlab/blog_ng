@@ -5,17 +5,26 @@ angular.module('blogNgApp')
     $scope.posts = postsFactory.query();
     $scope.addPostData = {};
     $scope.predicate = '-created_at';
-    $scope.addPost = function () {
-      postsFactory.save({ post: $scope.addPostData });
-      $scope.posts.push($scope.addPostData);
-      $scope.addPostData = {};
+    $scope.isPostData = function() {
+      if ($scope.addPostData.title || $scope.addPostData.text) {
+        console.log($scope.addPostData.title);
+        return true;
+      }
     };
-    $scope.editPost = function (idx) {
+    $scope.addPost = function () {
+      postsFactory.save({ post: $scope.addPostData }, function(data){
+        $scope.posts.push(data);
+//        console.log(data);
+        $scope.addPostData = {};
+      });
+    };
+    $scope.editPost = function (post) {
       var modalInstance = $modal.open({
         templateUrl: 'views/editPostModalContent.html',
         controller: 'editPostModalInstanceCtrl',
         resolve: {
           editPostData : function () {
+            var idx = $scope.posts.indexOf(post)
             $scope.editPostData = $scope.posts[idx];
             return $scope.editPostData;
           }
@@ -29,8 +38,9 @@ angular.module('blogNgApp')
         $log.info('Modal dismissed at: ' + new Date());
       });
     };
-    $scope.deletePost = function(idx){
+    $scope.deletePost = function(post){
       if (confirm("정말 삭제 하시겠습니까?")){
+        var idx = $scope.posts.indexOf(post);
         var post = $scope.posts[idx];
         postsFactory.delete({ id: post.id });
         $scope.posts.splice(idx, 1);
