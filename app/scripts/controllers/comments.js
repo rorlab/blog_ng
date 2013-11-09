@@ -6,10 +6,16 @@ angular.module('blogNgApp')
     $scope.addComment = function(){
       commentsFactory.save({ post_id: $scope.post.id, comment: $scope.addCommentData },function(data){
         $scope.post.comments.push(data);
-        console.log($scope.post.comments);
         $scope.addCommentData = {};
       });
 
+    };
+    $scope.deleteComment = function(comment){
+      if (confirm('정말 삭제하시겠습니까?')) {
+        var idx = $scope.post.comments.indexOf(comment);
+        commentsFactory.delete({ post_id: $scope.post.id,id:comment.id});
+        $scope.post.comments.splice(idx, 1);
+      };
     };
   }])
   .directive('ngEnter', function() {
