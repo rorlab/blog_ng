@@ -3,9 +3,12 @@
 angular.module('blogNgApp')
   .controller('CommentsCtrl', [ '$scope', 'commentsFactory', function ($scope, commentsFactory) {
     $scope.addCommentData = {};
+    commentsFactory.query({post_id: $scope.post.id}, function(data){
+      $scope.comments = data;
+    });
     $scope.addComment = function(){
       commentsFactory.save({ post_id: $scope.post.id, comment: $scope.addCommentData },function(data){
-        $scope.post.comments.push(data);
+        $scope.comments.push(data);
         $scope.addCommentData = {};
       });
 

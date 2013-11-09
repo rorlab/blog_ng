@@ -10,6 +10,8 @@
       <input type="text" ng-model="addPostData.title"><br/>
       <label>내용 </label>
       <textarea ng-model="addPostData.text"></textarea><br/>
+      <label>태그</label>
+      <input type="text" ng-model="addPostData.tag_list"><br />
       <a ng-click="addPost()" class="btn btn-primary">Create</a>
     </fieldset>
   </div>
@@ -20,22 +22,26 @@
       <li class="post" ng-show="isPostData()" >
         <div class="title">{{ addPostData.title }}</div>
         <div ng-show="addPostData.text" class="text">{{ addPostData.text }}</div>
+        <div ng-show="addPostData.tag_list" class="tag_list">
+          <i class="icon icon-tags"></i> {{ addPostData.tag_list }}</div>
+
         <div class="actions">작성중...</div>
       </li>
       <li class="post" ng-repeat="post in posts | orderBy:predicate:reverse  ">
         <div class="title">{{ post.title }}</div>
         <div class="text">{{ post.text }}</div>
         <div class="created_at">{{ post.created_at }}</div>
+        <div class="tags"><i class="icon icon-tags"></i> {{ post.tag_list.join(', ') }}</div>
         <div class="actions">
           <a ng-click="editPost(post)"><i class="icon icon-edit"></i> 수정</a>
           <a ng-click="deletePost(post)"><i class="icon icon-trash"></i> 삭제</a>
         </div>
         <!--Show comments of a post-->
         <div ng-controller="CommentsCtrl">
-        <div class="comments" ng-show="post.comments.length">
+        <div class="comments" ng-show="comments.length">
           <div class="comment_label">Comments</div>
           <ul>
-            <li class="comment" ng-repeat="comment in post.comments">
+            <li class="comment" ng-repeat="comment in comments">
               {{ comment.body }},
               <span class="created_at">{{ comment.created_at }}</span>
               <a ng-click="deleteComment(comment)"><i class="icon icon-trash"></i> 삭제</a>

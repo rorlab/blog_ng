@@ -14,18 +14,19 @@ angular.module('blogNgApp')
     $scope.addPost = function () {
       postsFactory.save({ post: $scope.addPostData }, function(data){
         $scope.posts.push(data);
-//        console.log(data);
         $scope.addPostData = {};
       });
     };
     $scope.editPost = function (post) {
+      var idx = $scope.posts.indexOf(post);
+      var postObj = $scope.posts[idx];
       var modalInstance = $modal.open({
         templateUrl: 'views/editPostModalContent.html',
         controller: 'editPostModalInstanceCtrl',
         resolve: {
           editPostData : function () {
-            var idx = $scope.posts.indexOf(post)
-            $scope.editPostData = $scope.posts[idx];
+            $scope.editPostData = angular.copy(postObj);
+            //$scope.editPostData = postObj;
             return $scope.editPostData;
           }
         }
@@ -34,6 +35,8 @@ angular.module('blogNgApp')
       modalInstance.result.then(function () {
         // save the modified post
         postsFactory.update({ id:$scope.editPostData.id, post: $scope.editPostData });
+        angular.copy($scope.editPostData, postObj);
+        postObj.tag_list = $scope.editPostData.tag_list.split(",");
       }, function () {
         $log.info('Modal dismissed at: ' + new Date());
       });
