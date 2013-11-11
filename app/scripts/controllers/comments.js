@@ -15,9 +15,9 @@ angular.module('blogNgApp')
     };
     $scope.deleteComment = function(comment){
       if (confirm('정말 삭제하시겠습니까?')) {
-        var idx = $scope.post.comments.indexOf(comment);
+        var idx = $scope.comments.indexOf(comment);
         commentsFactory.delete({ post_id: $scope.post.id,id:comment.id});
-        $scope.post.comments.splice(idx, 1);
+        $scope.comments.splice(idx, 1);
       };
     };
   }])
